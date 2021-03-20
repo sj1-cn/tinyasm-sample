@@ -16,24 +16,18 @@
 		<compiler.compilerArgument>-parameters</compiler.compilerArgument>
 		<junit.version>4.13.1</junit.version>
 	</properties>
-
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+	
 	<dependencies>
 		<dependency>
-			<groupId>com.github.sj1-cn</groupId>
+			<groupId>cn.sj1</groupId>
 			<artifactId>tinyasm-core</artifactId>
-			<version>${tinyasm.version}</version>
+			<version>0.3.4</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.github.sj1-cn</groupId>
+			<groupId>cn.sj1</groupId>
 			<artifactId>tinyasm-tool</artifactId>
-			<version>${tinyasm.version}</version>
+			<version>0.3.4</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -54,8 +48,8 @@
 					<skipMain>false</skipMain>
 					<skip>false</skip>
 					<encoding>${project.build.sourceEncoding}</encoding>
-					<source>1.9</source>
-					<target>1.9</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<compilerArgument>${compiler.compilerArgument}</compilerArgument>
 				</configuration>
 			</plugin>
