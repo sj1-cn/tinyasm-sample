@@ -6,12 +6,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.sj1-cn</groupId>
 	<artifactId>tinyasm-sample</artifactId>
-	<version>${tinyasm.version}</version>
+	<version>0.3.7</version>
 	<name>tinyasm-sample</name>
 	<description>tinyasm-sample</description>
 
 	<properties>
-		<tinyasm.version>0.3.4</tinyasm.version>
+		<tinyasm.version>${project.version}</tinyasm.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
+		<maven.compiler.compilerArgument>-parameters</maven.compiler.compilerArgument>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<compiler.compilerArgument>-parameters</compiler.compilerArgument>
 		<junit.version>4.13.1</junit.version>
@@ -21,13 +24,13 @@
 		<dependency>
 			<groupId>cn.sj1</groupId>
 			<artifactId>tinyasm-core</artifactId>
-			<version>0.3.4</version>
+			<version>${tinyasm.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>cn.sj1</groupId>
 			<artifactId>tinyasm-tool</artifactId>
-			<version>0.3.4</version>
+			<version>${tinyasm.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -47,10 +50,10 @@
 				<configuration>
 					<skipMain>false</skipMain>
 					<skip>false</skip>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
-					<source>1.8</source>
-					<target>1.8</target>
-					<compilerArgument>${compiler.compilerArgument}</compilerArgument>
+					<compilerArgument>${maven.compiler.compilerArgument}</compilerArgument>
 				</configuration>
 			</plugin>
 		</plugins>
