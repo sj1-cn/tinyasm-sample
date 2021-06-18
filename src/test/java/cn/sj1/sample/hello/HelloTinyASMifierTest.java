@@ -1,12 +1,11 @@
 package cn.sj1.sample.hello;
 
-import  cn.sj1.tinyasm.tools.TinyAsmTestUtils;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import cn.sj1.tinyasm.tools.TinyAsmTestUtils;
+import  cn.sj1.tinyasm.tools.TinyAsmTestUtils;
 
 public class HelloTinyASMifierTest {
 	static {
