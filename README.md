@@ -4,7 +4,7 @@
 
 使用tinyasm最快的方法是先建立一个模版Class。为了后续的方便，我们先建立一个接口 SayHello
 
-```
+```java
 public interface SayHello {
 	String sayHello();
 }
@@ -12,7 +12,7 @@ public interface SayHello {
 
 然后建立一个实现这个接口的class，Hello
 
-```
+```java
 public class Hello implements SayHello {
 	public String sayHello() {
 		return "hello world!";
@@ -22,12 +22,12 @@ public class Hello implements SayHello {
 
 然后我们使用代码：
 
-```
+```java
 TinyAsmTestUtils.dumpTinyAsm(Hello.class);
 ```
 这样会生成一个如下的class。也就是生成HelloClass的全部代码。直接在这个上边改就行了。
 
-```
+```java
 package cn.sj1.sample.hello;
 import org.objectweb.asm.Handle;
 import org.objectweb.asm.Label;
@@ -88,7 +88,7 @@ public class HelloTinyAsmDump {
 还可以使用更简单更实用的方法。因为模版Class可以不断追加功能，每次追加功能以后，都需要重新修改一遍太不方便了，所以我们可以生成一个Builderclass,只替换我们修改的部分。
 比如把"hello world!"修改成"HELLO WORLD!"。
 
-```
+```java
 public class HelloTinyAsmBuilder extends HelloTinyAsmDump {
 
 	@Override
@@ -108,7 +108,7 @@ public class HelloTinyAsmBuilder extends HelloTinyAsmDump {
 
 然后我们就可以直接调用了：
 
-```
+```java
 
 		HelloTinyAsmBuilder helloTinyAsmBuilder = new HelloTinyAsmBuilder();
 		helloTinyAsmBuilder.build(Hello.class.getName());
@@ -118,7 +118,7 @@ public class HelloTinyAsmBuilder extends HelloTinyAsmDump {
 为了检查生成的结果对不对，我们可以利用ASM的功能把生成的字节码转换成ASM的文件，直接比对。
 注:为了比对方便，行号等对最终结果无关的内容忽略了。
 
-```
+```java
 		HelloTinyAsmBuilder helloTinyAsmBuilder = new HelloTinyAsmBuilder();
 		
 		String codeExpected = TinyAsmTestUtils.toString(Hello.class);
@@ -131,7 +131,7 @@ public class HelloTinyAsmBuilder extends HelloTinyAsmDump {
 
 也可以直接生成实际Class，新建instance并执行。
 
-```
+```java
 
 		TinyAsmClassLoader load = new TinyAsmClassLoader();
 		HelloTinyAsmBuilder helloTinyAsmBuilder = new HelloTinyAsmBuilder();
