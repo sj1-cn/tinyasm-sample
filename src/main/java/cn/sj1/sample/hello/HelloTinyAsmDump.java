@@ -11,6 +11,8 @@ import cn.sj1.tinyasm.core.ClassBuilder;
 import cn.sj1.tinyasm.core.Clazz;
 import cn.sj1.tinyasm.core.MethodCode;
 
+import cn.sj1.sample.hello.SayHello;
+
 @SuppressWarnings("unused")
 public class HelloTinyAsmDump {
 
@@ -19,7 +21,7 @@ public class HelloTinyAsmDump {
 	}
 
 	public byte[] build(String className) throws Exception {
-		ClassBody classBody = ClassBuilder.class_(className)
+		ClassBody classBody = ClassBuilder.class_(className, Object.class, SayHello.class)
 			.access(ACC_PUBLIC | ACC_SUPER).body();
 
 		__init_(classBody);

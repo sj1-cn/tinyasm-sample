@@ -1,6 +1,6 @@
 package cn.sj1.sample.hello;
 
-import static cn.sj1.tinyasm.tools.TinyAsmTestUtils.dumpTinyAsm;
+import  cn.sj1.tinyasm.tools.TinyAsmTestUtils;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -15,26 +15,24 @@ public class HelloTinyASMifierTest {
 
 	@Test
 	public void test_Hello_dumpTinyAsm() throws Exception {
-		Class<?> expectedClazz = Hello.class;
-		String codeExpected = TinyAsmTestUtils.toString(expectedClazz);
+		String codeExpected = TinyAsmTestUtils.toString(Hello.class);
 
-		String codeActual = TinyAsmTestUtils.toString(expectedClazz.getName(), dumpTinyAsm(expectedClazz));
+		String codeActual = TinyAsmTestUtils.toString(Hello.class.getName(), TinyAsmTestUtils.dumpTinyAsm(Hello.class));
 
-		assertEquals("Code", codeExpected, codeActual);
+		assertEquals(codeExpected, codeActual);
 	}
 
 	@Test
 	public void test_Hello_build() throws Exception {
 
-		Class<?> expectedClazz = Hello.class;
-		String codeExpected = TinyAsmTestUtils.toString(expectedClazz);
+		String codeExpected = TinyAsmTestUtils.toString(Hello.class);
 
 		HelloTinyAsmBuilder helloTinyAsmBuilder = new HelloTinyAsmBuilder();
 
-		String codeActual = TinyAsmTestUtils.toString(expectedClazz.getName(), helloTinyAsmBuilder.build(expectedClazz.getName()));
+		String codeActual = TinyAsmTestUtils.toString(Hello.class.getName(), helloTinyAsmBuilder.build(Hello.class.getName()));
 
-		assertNotEquals("Code", codeExpected, codeActual);
-		assertEquals("Code", codeExpected.replaceAll("hello world!", "HELLO WORLD!"), codeActual);
+		assertNotEquals(codeExpected, codeActual);
+		assertEquals(codeExpected.replaceAll("hello world!", "HELLO WORLD!"), codeActual);
 	}
 
 	@Test
@@ -45,7 +43,7 @@ public class HelloTinyASMifierTest {
 		HelloTinyAsmBuilder helloTinyAsmBuilder = new HelloTinyAsmBuilder();
 		String codeActual = TinyAsmTestUtils.toString(expectedClazz.getName(), helloTinyAsmBuilder.build(expectedClazz.getName()));
 
-		assertEquals("Code", codeExpected, codeActual);
+		assertEquals(codeExpected, codeActual);
 	}
 
 	@Test
@@ -60,7 +58,7 @@ public class HelloTinyASMifierTest {
 
 		SayHello sayHello = (SayHello) classHello.getConstructor().newInstance();
 
-		assertEquals("Code", "HELLO WORLD!", sayHello.sayHello());
+		assertEquals("HELLO WORLD!", sayHello.sayHello());
 
 	}
 }
