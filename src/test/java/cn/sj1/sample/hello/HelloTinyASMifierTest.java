@@ -25,21 +25,42 @@ public class HelloTinyASMifierTest {
 
 	@Test
 	public void test_Hello_build() throws Exception {
+
 		Class<?> expectedClazz = Hello.class;
 		String codeExpected = TinyAsmTestUtils.toString(expectedClazz);
-		
+
 		HelloTinyAsmBuilder helloTinyAsmBuilder = new HelloTinyAsmBuilder();
 
 		String codeActual = TinyAsmTestUtils.toString(expectedClazz.getName(), helloTinyAsmBuilder.build(expectedClazz.getName()));
 
 		assertNotEquals("Code", codeExpected, codeActual);
 		assertEquals("Code", codeExpected.replaceAll("hello world!", "HELLO WORLD!"), codeActual);
-		
+	}
 
-		expectedClazz = HelloExpected.class;
-		codeExpected = TinyAsmTestUtils.toString(expectedClazz);
-		codeActual = TinyAsmTestUtils.toString(expectedClazz.getName(), helloTinyAsmBuilder.build(expectedClazz.getName()));
-		
+	@Test
+	public void test_Hello_compareWithExpected() throws Exception {
+		Class<?> expectedClazz = HelloExpected.class;
+		String codeExpected = TinyAsmTestUtils.toString(expectedClazz);
+
+		HelloTinyAsmBuilder helloTinyAsmBuilder = new HelloTinyAsmBuilder();
+		String codeActual = TinyAsmTestUtils.toString(expectedClazz.getName(), helloTinyAsmBuilder.build(expectedClazz.getName()));
+
 		assertEquals("Code", codeExpected, codeActual);
+	}
+
+	@Test
+	public void test_Hello_run() throws Exception {
+
+		TinyAsmClassLoader load = new TinyAsmClassLoader();
+		HelloTinyAsmBuilder helloTinyAsmBuilder = new HelloTinyAsmBuilder();
+
+		byte[] bytesClass = helloTinyAsmBuilder.build(HelloExpected.class.getName());
+
+		Class<?> classHello = load.defineClassByName(HelloExpected.class.getName(), bytesClass);
+
+		SayHello sayHello = (SayHello) classHello.getConstructor().newInstance();
+
+		assertEquals("Code", "HELLO WORLD!", sayHello.sayHello());
+
 	}
 }

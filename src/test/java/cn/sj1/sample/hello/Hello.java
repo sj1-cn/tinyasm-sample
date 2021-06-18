@@ -1,6 +1,6 @@
 package cn.sj1.sample.hello;
 
-public class Hello {
+public class Hello implements SayHello {
 	public String sayHello() {
 		return "hello world!";
 	}
