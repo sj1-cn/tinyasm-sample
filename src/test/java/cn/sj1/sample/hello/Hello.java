@@ -1,7 +1,7 @@
-package cn.sj1.sample;
+package cn.sj1.sample.hello;
 
 public class Hello {
 	public String sayHello() {
-		return "I'm fine";
+		return "hello world!";
 	}
 }
