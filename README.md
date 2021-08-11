@@ -20,6 +20,26 @@ public class Hello implements SayHello {
 }
 ```
 
+## MAVEN配置
+运行时
+```xml
+		<dependency>
+			<groupId>cn.sj1</groupId>
+			<artifactId>tinyasm-core</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+```
+
+样例代码生成
+
+```xml
+		<dependency>
+			<groupId>cn.sj1</groupId>
+			<artifactId>tinyasm-tool</artifactId>
+			<version>1.0.4</version>
+			<scope>test</scope>
+		</dependency>
+```
 然后我们使用代码：
 
 ```java
