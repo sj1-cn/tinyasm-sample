@@ -1,4 +1,5 @@
 package cn.sj1.sample.hello;
+
 import org.objectweb.asm.Handle;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.Opcodes;
@@ -16,13 +17,12 @@ import cn.sj1.sample.hello.SayHello;
 @SuppressWarnings("unused")
 public class HelloTinyAsmDump {
 
-	public static byte[] dump() throws Exception {
+	public static byte[] dump() {
 		return new HelloTinyAsmDump().build("cn.sj1.sample.hello.Hello");
 	}
 
-	public byte[] build(String className) throws Exception {
-		ClassBody classBody = ClassBuilder.class_(className, Object.class, SayHello.class)
-			.access(ACC_PUBLIC | ACC_SUPER).body();
+	public byte[] build(String className)  {
+		ClassBody classBody = ClassBuilder.class_(className, Object.class, SayHello.class).body();
 
 		__init_(classBody);
 		_sayHello(classBody);
@@ -43,7 +43,7 @@ public class HelloTinyAsmDump {
 
 	protected void _sayHello(ClassBody classBody) {
 		MethodCode code = classBody.public_().method("sayHello")
-			.return_(String.class ).begin();
+				.return_(String.class).begin();
 
 		code.LINE();
 		code.LOADConst("hello world!");
